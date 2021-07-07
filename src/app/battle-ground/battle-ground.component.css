@@ -1,0 +1,138 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.battleship-grid {
+    margin: 2vmin;
+    display: grid;
+    background-color: hsl(200, 100%, 50%);
+    grid-template-rows: repeat(10, 4.6vmin);
+    grid-template-columns: repeat(10, 4.6vmin);
+}
+
+.btn {
+    background-color: indianred;
+    padding: .5em 1em;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: .2em;
+    color: #333;
+    margin: 5px;
+}
+
+
+/* .hidden-info {} */
+
+.battleship-grid div {
+    border: 1px solid rgba(235, 217, 217, 0.2)
+}
+
+.grid-displayShips {
+    width: 200px;
+    height: 450px;
+    margin: 2vmin;
+    background-color: hsl(200, 4%, 17%);
+}
+
+.ship div {
+    width: 40px;
+    height: 40px;
+}
+
+.destroyer-container {
+    width: 120px;
+    height: 40px;
+    background-color: orange;
+    margin: 10px;
+    display: flex;
+}
+
+.destroyer-container-verticle {
+    width: 40px;
+    height: 120px;
+    background-color: orange;
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.destroyer2-container {
+    width: 120px;
+    height: 40px;
+    background-color: orange;
+    margin: 10px;
+    display: flex;
+}
+
+.destroyer2-container-verticle {
+    width: 40px;
+    height: 120px;
+    background-color: orange;
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.battleship-container {
+    width: 160px;
+    height: 40px;
+    background-color: rgb(26, 228, 53);
+    margin: 10px;
+    display: flex;
+}
+
+.battleship-container-verticle {
+    width: 40px;
+    height: 160px;
+    background-color: rgb(26, 228, 53);
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.grid-computer>div {
+    background-color: hsl(200, 100%, 50%) !important;
+}
+
+.destroyer {
+    background-color: rgb(206, 139, 14);
+}
+
+.destroyer2 {
+    background-color: rgb(206, 139, 14);
+}
+
+.battleship {
+    background-color: rgb(26, 228, 53);
+}
+
+.grid-computer .boom {
+    background-color: red !important;
+}
+
+.grid-computer .miss {
+    background-color: rgb(134, 240, 234) !important;
+}
+
+.grid-user .miss {
+    background-color: rgb(134, 240, 234) !important;
+}
+
+#outer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 120px;
+    /* width: 516px; */
+    justify-content: center;
+    align-items: center;
+}
+
+#div {
+    flex: 0 0 50px;
+}

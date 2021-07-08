@@ -21,14 +21,22 @@
         </div>
     </div>
     <div style="display: flex;flex-direction: column;">
-        <h3>{{ chance }}</h3>
+        <h3>{{'Message : ' + chance }}</h3>
         <div style="display: flex; flex-direction: row;">
             <div class="battleship-grid grid-user" (dragover)="allowDrop($event)"></div>
             <div class="battleship-grid grid-computer"></div>
+            <div>
+                <p>Battle Ship - <span style="font-weight: bold;color: red;">{{battleshipCount == 5 ? 'X':'!'}}</span></p>
+                <p>Destroyer 01 - <span style="font-weight: bold;color: red;">{{destroyerCount == 4 ? 'X':'!'}}</span></p>
+                <p>Destroyer 02 - <span style="font-weight: bold;color: red;">{{destroyer2Count == 4 ? 'X':'!'}}</span></p>
+            </div>
         </div>
-        <div>
-            <button id="startButton" class="btn" (click)="startGame()">Start Battle</button>
-            <button id="rotateButton" class="btn" (click)="rotateShips()">Rotate Ship</button>
+        <div style="display: flex;">
+            <div style="float: left;">
+                <button id="startButton" class="btn" (click)="startGame()">Start Battle</button>
+                <button id="rotateButton" class="btn" (click)="rotateShips()">Rotate Ship</button>
+                <button id="resetButton" class="btn" (click)="resetGame()">Reset</button>
+            </div>
         </div>
     </div>
 </div>

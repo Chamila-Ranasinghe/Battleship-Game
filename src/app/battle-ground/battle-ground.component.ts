@@ -63,7 +63,6 @@ export class BattleGroundComponent implements OnInit {
     this.createBoard(this.userGrid, this.userSquares);
     this.createBoard(this.computerGrid, this.computerSquares);
     this.AssignDraggableEventsToDivs();
-
     this.GetDefaultShips();
   }
 
@@ -147,6 +146,7 @@ export class BattleGroundComponent implements OnInit {
     ev.preventDefault();
   }
 
+  ////assigining events to the generated divs 
   AssignDraggableEventsToDivs() {
     this.computerSquares.forEach(square => square.addEventListener('click', this.onUserClick.bind(this)));
     this.userSquares.forEach(square => square.addEventListener('dragstart', this.ondragstart.bind(this)))
@@ -217,9 +217,9 @@ export class BattleGroundComponent implements OnInit {
       ////check if the user has click already clicked square
       if (!this.computerSquares[squareId].classList.contains('boom')
         && !this.computerSquares[squareId].classList.contains('miss')) {
-  
-          console.log(this.computerSquares[squareId].classList.contains('boom'))
-          console.log(this.computerSquares[squareId].classList.contains('miss'))
+
+        console.log(this.computerSquares[squareId].classList.contains('boom'))
+        console.log(this.computerSquares[squareId].classList.contains('miss'))
         if (this.computerSquares[squareId].classList.contains('destroyer')) {
           this.destroyerCount++;
         }
@@ -237,11 +237,12 @@ export class BattleGroundComponent implements OnInit {
           this.computerSquares[squareId].classList.add('miss')
         }
 
-        this.checkForWin(this.destroyerCount, this.destroyer2Count, this.battleshipCount, "YOU");
-        if (!this.isGameOver) {
-          this.chance = 'Computers Go';
-          this.playGame();
-        }
+        this.checkForWin(this.destroyerCount, this.destroyer2Count, this.battleshipCount, "YOU", () => {
+          if (!this.isGameOver) {
+            this.chance = 'Computers Go';
+            this.playGame();
+          }
+        });
       }
       else {
         this.chance = 'Your Go';
@@ -276,22 +277,21 @@ export class BattleGroundComponent implements OnInit {
       }
 
       this.checkForWin(this.computerDestroyerCount, this.computerDestroyer2Count, this.computerBattleshipCount,
-        "COMPUTER");
-      if (!this.isGameOver) {
-        this.chance = 'Your Go';
-        this.playGame();
-      }
+        "COMPUTER", () => {
+          if (!this.isGameOver) {
+            this.chance = 'Your Go';
+            this.playGame();
+          }
+        });
     }
-    else
-    {
+    else {
       this.chance = 'Computer Go';
-        this.playGame();
+      this.playGame();
     }
 
   }
 
-  checkForWin(destroyerCount: number, destroyer2Count: number, battleshipCount: number, activeUser: string) {
-    
+  checkForWin(destroyerCount: number, destroyer2Count: number, battleshipCount: number, activeUser: string, callback: Function) {
     this.GameData.DestroyerCount = destroyerCount;
     this.GameData.Destroyer2Count = destroyer2Count;
     this.GameData.BattleShipCount = battleshipCount;
@@ -299,20 +299,21 @@ export class BattleGroundComponent implements OnInit {
 
     this.transactionService.CalculatePoints(this.GameData, responce => {
       if (responce.IsSucessfull) {
-
         this.isGameOver = true;
         this.isGameStarted = false;
         this.chance = responce.Message;
       }
-      else {
-        setTimeout(() => {
-          this.chance = responce.Message;
-        }, 1000);
-
-      }
-
+      // else {
+      //   setTimeout(() => {
+      //     this.chance = responce.Message;
+      //   }, 1000);
+      // }
+      callback(true);
     });
+  }
 
+  resetGame() {
+    window.location.reload();
   }
 
 
